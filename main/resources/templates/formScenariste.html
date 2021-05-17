@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="text/javascript" type="text/javascript"
+	href=src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" />
+
+<head>
+	<meta charset="utf-8">
+	<title>Ajout des Film</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	
+</head>
+
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header" th:if="${mode=='new'}">ajout</div>
+				
+								<div class="card-header" th:if="${mode=='edit'}">
+modifier</div>
+				<div class="card-body">
+					<form th:action="@{saveSc}" method="post" >
+						<div class="form-group">
+							<label class="control-label">nom Scenariste :</label>
+							<input type="text" name="nomSc" class="form-control" th:value="${scenariste.nomSc}" />
+							<span th:errors=${scenariste.nomSc} class="text-danger"> </span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">prenom Scenariste:</label>
+							<input type="text" name="prenomSc" class="form-control" />
+							<span th:errors=${scenariste.prenomSc} class="text-danger"> </span>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label">date :</label>
+							<input type="date" name="dateNaissance" class="form-control" th:value="${scenariste.dateNaissance}" />
+							<span th:errors=${scenariste.dateNaissance} class="text-danger"> </span>
+						</div>
+				
+
+							
+						<div>
+							<button type="submit" class="btn btn-primary">Valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
