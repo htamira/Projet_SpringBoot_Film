@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="text/javascript" type="text/javascript" href=src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" />
+
+<head>
+	<meta charset="utf-8">
+	<title>Ajout des Film</title>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	
+	$(document).ready(new function(){
+		('#fileImage').change(function(){
+			showImageThumbail(this);
+		});
+	});
+	
+	function showImageThumbail(fileInput)
+	{
+		file = fileInput.files[0];
+		reader= new FileReader();
+		reader.onload=function(e){
+			$('#thumbail').attr('src', e.target.result);
+			
+		};
+		reader.readAsDataURML(file);
+	}
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="Mycontent">
+		<div class="container mt-5">
+			<div class="card">
+				<div class="card-header"> Ajout des Film </div>
+				<div class="card-body">
+					<form th:action="@{saveFilm}" method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<label class="control-label">Titre :</label>
+							<input type="text" name="titre" class="form-control" th:value="${film.titre}" />
+						<span th:errors= ${film.titre} class="text-danger"> </span>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Sponsor:</label>
+							<input type="text" name="sponsor" class="form-control" />
+												<span th:errors= ${film.sponsor} class="text-danger"> </span>
+
+						</div>
+						<div class="form-group">
+							<label class="control-label">date :</label>
+							<input type="date" name="dateSortie" class="form-control" th:value="${film.dateSortie}" />
+							<span th:errors=${film.dateSortie} class="text-danger"> </span>
+						</div>
+						<div>
+
+							<label>Logo: </label>
+							<input type="file" name="fileImage" id="fileImage" accept="image/png, image/jpeg"
+								class="form-control" />
+
+						</div>
+					<!-- <img id="thumbnail" alt="logo"></img>-->
+						<div>
+							<button type="submit" class="btn btn-primary">Valider</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
