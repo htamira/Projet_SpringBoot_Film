@@ -1,7 +1,7 @@
 # Projet_SpringBoot_Film
 
 <li> Gérer Film </li>
-<li>gerer le scenariste </li>
-<li>ajouter image aux films</film>
+<li> Gerer le scenariste </li>
+<li> Ajouter image aux films</film>
 
 ##Using :
